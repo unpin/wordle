@@ -29,6 +29,8 @@ footer {
     display: flex;
     justify-content: space-around;
     align-items: center;
+    max-width: 580px;
+    margin: 1rem auto;
 }
 
 footer img {
