@@ -1,0 +1,164 @@
+* {
+    color: #fff;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande',
+        'Lucida Sans', Arial, sans-serif;
+}
+
+body {
+    background-color: #121213;
+}
+
+header {
+    display: flex;
+    align-items: center;
+    max-width: 580px;
+    margin: auto;
+}
+
+header > * {
+    width: 30%;
+    text-align: center;
+}
+
+button {
+    cursor: pointer;
+}
+
+footer {
+    margin: 2rem 0;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+footer img {
+    height: 20px;
+    filter: invert();
+}
+
+.game-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.title-container {
+    text-align: center;
+    width: 510px;
+    border-bottom: solid 1px #3a3a3c;
+}
+
+.tile-container {
+    width: 330px;
+    margin-block-end: 30px;
+}
+
+.key-container {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+@media (min-width: 768px) {
+    .key-container {
+        width: 510px;
+    }
+}
+
+.key-container button {
+    width: 42px;
+    height: 58px;
+    border-radius: 4px;
+    border: none;
+    background-color: #818384;
+    margin: 4px;
+    user-select: none;
+    cursor: pointer;
+}
+
+.key-container button:hover {
+    background-color: #a0a0a0;
+}
+
+.key-container button:nth-child(11) {
+    margin-left: 30px;
+}
+.key-container button:nth-child(20),
+.key-container button:nth-child(28) {
+    width: 70px;
+}
+
+.tile-container div {
+    display: flex;
+}
+
+.tile-container .tile {
+    width: 62px;
+    height: 62px;
+    border: 2px solid #3a3a3c;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    margin: 2px;
+}
+
+.message-container {
+    height: 30px;
+}
+
+.message-container p {
+    background-color: #818384;
+    border-radius: 10px;
+    padding: 10px;
+    margin: 0;
+}
+
+.grey-overlay {
+    background-color: #3a3a3c !important;
+    border: none;
+}
+
+.yellow-overlay {
+    background-color: #b59f3a !important;
+    border: none;
+}
+
+.green-overlay {
+    background-color: #538d4e !important;
+    border: none;
+}
+
+.tile.flip {
+    animation: flipping 500ms linear;
+    backface-visibility: hidden;
+}
+
+@keyframes flipping {
+    0% {
+        transform: rotateX(0deg);
+    }
+    50% {
+        transform: rotateX(90deg);
+    }
+    100% {
+        transform: rotateX(0deg);
+    }
+}
+
+.title {
+    width: 70%;
+    text-align: center;
+}
+
+.title h1 {
+    margin: 0;
+}
+
+.help,
+.ranking {
+    background-color: transparent;
+    border: none;
+}

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta
+            name="description"
+            content="Guess the hidden word in 6 tries. A new puzzle is available each day."
+        />
+        <title>Wordle 2.0</title>
+        <link rel="stylesheet" href="style.css" />
+    </head>
+    <body>
+        <header>
+            <div>
+                <button class="help">
+                    <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        height="24"
+                        viewBox="0 0 24 24"
+                        width="24"
+                    >
+                        <path
+                            fill="#fff"
+                            d="M11 18h2v-2h-2v2zm1-16C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm0-14c-2.21 0-4 1.79-4 4h2c0-1.1.9-2 2-2s2 .9 2 2c0 2-3 1.75-3 5h2c0-2.25 3-2.5 3-5 0-2.21-1.79-4-4-4z"
+                        ></path>
+                    </svg>
+                </button>
+            </div>
+            <div class="title">
+                <h1>Wordle</h1>
+            </div>
+            <div>
+                <button class="ranking">
+                    <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        height="24"
+                        viewBox="0 0 24 24"
+                        width="24"
+                    >
+                        <path
+                            fill="#fff"
+                            d="M16,11V3H8v6H2v12h20V11H16z M10,5h4v14h-4V5z M4,11h4v8H4V11z M20,19h-4v-6h4V19z"
+                        ></path>
+                    </svg>
+                </button>
+            </div>
+        </header>
+        <div class="game-container">
+            <div class="message-container"></div>
+            <div class="tile-container"></div>
+            <div class="key-container"></div>
+        </div>
+        <footer>
+            <div>
+                <a href="https://github.com/unpin"
+                    ><img src="assets/svg/github.svg" alt=""
+                /></a>
+            </div>
+            <div>2022</div>
+            <div>
+                <a href="https://rs.school/js-stage0/"
+                    ><img src="assets/svg/rs.svg" alt=""
+                /></a>
+            </div>
+        </footer>
+        <script src="app.js"></script>
+    </body>
+</html>
