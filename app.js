@@ -3,6 +3,10 @@ const keyboard = document.querySelector('.key-container');
 const messageDisplay = document.querySelector('.message-container');
 const rankingBtn = document.querySelector('.ranking')
 const helpBtn = document.querySelector('.help')
+const closeBtn = document.querySelector('.close-button')
+const modal = document.querySelector('.modal')
+const winnerModal = document.querySelector('.winner-modal')
+const saveScoreBtn = document.querySelector('.save-score-btn')
 
 const words =
     'Abuse,Adult,Agent,Anger,Apple,Award,Basis,Beach,Birth,Block,Blood,Board,Brain,Bread,Break,Brown,Buyer,Cause,Chain,Chair,Chest,Chief,Child,China,Claim,Class,Clock,Coach,Coast,Court,Cover,Cream,Crime,Cross,Crowd,Crown,Cycle,Dance,Death,Depth,Doubt,Draft,Drama,Dream,Dress,Drink,Drive,Earth,Enemy,Entry,Error,Event,Faith,Fault,Field,Fight,Final,Floor,Focus,Force,Frame,Frank,Front,Fruit,Glass,Grant,Grass,Green,Group,Guide,Heart,Henry,Horse,Hotel,House,Image,Index,Input,Issue,Japan,Jones,Judge,Knife,Laura,Layer,Level,Lewis,Light,Limit,Lunch,Major,March,Match,Metal,Model,Money,Month,Motor,Mouth,Music,Night,Noise,North,Novel,Nurse,Offer,Order,Other,Owner,Panel,Paper,Party,Peace,Peter,Phase,Phone,Piece,Pilot,Pitch,Place,Plane,Plant,Plate,Point,Pound,Power,Press,Price,Pride,Prize,Proof,Queen,Radio,Range,Ratio,Reply,Right,River,Round,Route,Rugby,Scale,Scene,Scope,Score,Sense,Shape,Share,Sheep,Sheet,Shift,Shirt,Shock,Sight,Simon,Skill,Sleep,Smile,Smith,Smoke,Sound,South,Space,Speed,Spite,Sport,Squad,Staff,Stage,Start,State,Steam,Steel,Stock,Stone,Store,Study,Stuff,Style,Sugar,Table,Taste,Terry,Theme,Thing,Title,Total,Touch,Tower,Track,Trade,Train,Trend,Trial,Trust,Truth,Uncle,Union,Unity,Value,Video,Visit,Voice,Waste,Watch,Water,While,White,Whole,Woman,World,Youth'
@@ -108,6 +112,12 @@ const deleteLetter = () => {
     guessRows[currentRow][currentColumn] = '';
 };
 
+function showWinnerModal(score) {
+    winnerModal.classList.add('open')
+    const scoreSpan = winnerModal.querySelector('span')
+    scoreSpan.textContent = +score
+}
+
 function checkRow() {
     if (currentColumn > 4) {
         flipColumns();
@@ -115,6 +125,7 @@ function checkRow() {
         if (guess.toUpperCase() === word) {
             isGameOver = true;
             showMessage('Magnicicent!');
+            showWinnerModal(100 - currentRow * 10)
         } else {
             if (currentRow >= 5) {
                 isGameOver = true;
@@ -175,6 +186,24 @@ function addColorToKey(key, className) {
         .classList.add(className);
 }
 
+function hasInStore(key) {
+    const data = localStorage.getItem(key)
+    if (data) return true
+    return false
+}
+
+function addScore() {
+    if (!hasInStore('score')) {
+        localStorage.setItem('score', JSON.stringify([]))
+    }
+    const scoreArray = JSON.parse(localStorage.getItem('score'))
+    const nameInput = document.querySelector('input')
+    const name = nameInput.value
+    const score = +document.querySelector('.score').textContent
+    scoreArray.push({ score, name })
+    localStorage.setItem('score', JSON.stringify(scoreArray.slice(0, 10)))
+}
+
 keys.forEach((key) => {
     const buttonElement = document.createElement('button');
     buttonElement.innerText = key;
@@ -186,7 +215,7 @@ keyboard.addEventListener('click', handleClick);
 
 window.addEventListener('keydown', (e) => {
     const key = e.key.toUpperCase();
-    console.log(key);
+
     if (isGameOver) return;
     if (key === 'BACKSPACE') {
         deleteLetter();
@@ -197,3 +226,47 @@ window.addEventListener('keydown', (e) => {
         addLetter(key);
     }
 });
+
+helpBtn.addEventListener('click', () => {
+    modal.classList.add('open')
+    const content = modal.querySelector('.content')
+    content.innerHTML = ''
+    const template = document.querySelector('#how-to-play')
+    const clone = template.content.cloneNode(true);
+    content.appendChild(clone)
+})
+
+rankingBtn.addEventListener('click', () => {
+    modal.classList.add('open')
+    const content = modal.querySelector('.content')
+    content.innerHTML = ''
+    const template = document.querySelector('#ranking-template')
+    const clone = template.content.cloneNode(true)
+    content.appendChild(clone)
+    if (hasInStore('score')) {
+        const table = content.querySelector('table')
+        const score = JSON.parse(localStorage.getItem('score'))
+        score.sort((a, b) => b.score - a.score)
+        score.forEach(({ name, score }, idx) => {
+            const row = document.createElement('tr')
+            const placeColumn = document.createElement('td')
+            const nameColumn = document.createElement('td')
+            const scoreColumn = document.createElement('td')
+            placeColumn.textContent = idx + 1
+            nameColumn.textContent = name
+            scoreColumn.textContent = score
+            row.append(placeColumn, nameColumn, scoreColumn)
+            table.appendChild(row)
+        })
+
+    }
+})
+
+closeBtn.addEventListener('click', () => {
+    modal.classList.remove('open')
+})
+
+saveScoreBtn.addEventListener('click', () => {
+    addScore()
+    winnerModal.classList.remove('open')
+})

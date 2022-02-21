@@ -11,6 +11,24 @@
         <link rel="stylesheet" href="style.css" />
     </head>
     <body>
+        <div class="modal">
+            <div class="header">
+                <button class="close-button">
+                    <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        height="24"
+                        viewBox="0 0 24 24"
+                        width="24"
+                    >
+                        <path
+                            fill="#fff"
+                            d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"
+                        ></path>
+                    </svg>
+                </button>
+            </div>
+            <div class="content"></div>
+        </div>
         <header>
             <div>
                 <button class="help">
@@ -64,6 +82,68 @@
                 /></a>
             </div>
         </footer>
+        <template id="how-to-play">
+            <h3>How to Play</h3>
+            <p>Guess the WORDLE in six tries.</p>
+            <p>
+                Each guess must be a valid five-letter word. Hit the enter
+                button to submit.
+            </p>
+            <p>
+                After each guess, the color of the tiles will change to show how
+                close your guess was to the word.
+            </p>
+            <hr />
+            <h4>Examples</h4>
+            <div class="tiles">
+                <div class="tile correct-spot">W</div>
+                <div class="tile">A</div>
+                <div class="tile">T</div>
+                <div class="tile">E</div>
+                <div class="tile">R</div>
+            </div>
+            <p>The letter W is in the word and in the correct spot.</p>
+            <div class="tiles">
+                <div class="tile">S</div>
+                <div class="tile wrong-spot">M</div>
+                <div class="tile">A</div>
+                <div class="tile">S</div>
+                <div class="tile">H</div>
+            </div>
+            <p>The letter M is in the word but in the wrong spot.</p>
+            <div class="tiles">
+                <div class="tile">P</div>
+                <div class="tile">L</div>
+                <div class="tile">A</div>
+                <div class="tile no-spot">C</div>
+                <div class="tile">E</div>
+            </div>
+            <p>The letter C is not in the word in any spot.</p>
+        </template>
+        <template id="ranking-template">
+            <h3>Top 10 Rankings</h3>
+            <table>
+                <tr>
+                    <th>#</th>
+                    <th>Name</th>
+                    <th>Score</th>
+                </tr>
+            </table>
+        </template>
+        <div class="winner-modal">
+            <div class="content">
+                <h2>You WON! Score: <span class="score"></span></h2>
+                <p>What is your name?</p>
+                <div class="input-field">
+                    <input
+                        type="text"
+                        name="name"
+                        placeholder="Enter your name"
+                    />
+                </div>
+                <button class="save-score-btn">Save</button>
+            </div>
+        </div>
         <script src="app.js"></script>
     </body>
 </html>
