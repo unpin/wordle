@@ -5,14 +5,23 @@
 }
 
 body {
+    display: grid;
     background-color: #121213;
+    height: 100vh;
+    grid-template-areas:
+        "header"
+        "main"
+        "footer";
+    grid-template-rows: auto 1fr auto;
 }
 
 header {
     display: flex;
     align-items: center;
     max-width: 580px;
+    width: 100%;
     margin: auto;
+    grid-area: header;
 }
 
 header > * {
@@ -31,7 +40,9 @@ footer {
     justify-content: space-around;
     align-items: center;
     max-width: 580px;
+    width: 100%;
     margin: 1rem auto;
+    grid-area: footer;
 }
 
 footer img {
@@ -49,6 +60,7 @@ hr {
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
+    grid-area: main;
 }
 
 .title-container {
